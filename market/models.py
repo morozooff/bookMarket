@@ -1,5 +1,7 @@
 from django.db import models
-
+from django.utils.safestring import mark_safe
+from PIL import Image as Im # new
+from django.contrib.auth.models import User
 # Create your models here
 
 class Author(models.Model):
@@ -13,7 +15,17 @@ class Book(models.Model):
     pages_num = models.IntegerField()
     cost = models.IntegerField()
     review = models.TextField()
-    # avatar = models.FileField()
+    tags = models.TextField(default = 'Book')
+    cover = models.ImageField(upload_to = 'images', blank = True, null = True)
+
+    def save(self):
+        super().save()
+        image = Im.open(self.cover.path)
+        if image.height > 300 or image.width > 300:
+            correct_params = (300, 300)
+            image.thumbnail(correct_params)
+            image.save(self.cover.path)
+
 
 class Order(models.Model):
     order_id = models.CharField(max_length=255, primary_key=True)
@@ -27,11 +39,4 @@ class Order(models.Model):
         ('ND', 'Not Delivered')
     ]
     status = models.CharField(max_length=2, choices=ORDER_STATUS, default = 'S')
-
-
-class User(models.Model):
-    login = models.CharField(max_length=100, unique=True)
-    email = models.EmailField()
-    password = models.CharField(max_length=255)
-    orders = models.ForeignKey(Order, on_delete= models.CASCADE)
-    # avatar = models.FileField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

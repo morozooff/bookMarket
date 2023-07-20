@@ -11,7 +11,7 @@ class AuthorSerializer(ModelSerializer):
 class BookSerializer(ModelSerializer):
     class Meta:
         model = Book
-        fields = ['name', 'author', 'cost']
+        fields = ['name', 'author', 'cost', 'cover']
 
 
 class OrderSerializer(ModelSerializer):
