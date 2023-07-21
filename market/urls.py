@@ -12,5 +12,6 @@ urlpatterns = router.urls
 # urlpatterns += [path('registration', RegisterUserView.as_view())]
 
 urlpatterns += [path('', home, name = 'market-home')]
-urlpatterns += [path('catalog/', catalog, name = 'market-catalog')]
+urlpatterns += [path('catalog/', BookListView.as_view(), name = 'market-catalog')]
 urlpatterns += [path('about/', about, name = 'market-about')]
+urlpatterns += [path('book/<int:pk>/', BookDetailView.as_view(), name = 'book-detail')]

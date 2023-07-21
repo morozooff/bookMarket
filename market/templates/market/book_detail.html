@@ -1,15 +1,14 @@
 {% extends "market/base.html" %}
 {% block content %}
-    <style>
-       .leftimg {
+<style>
+  .leftimg {
         float:left;
         margin: 7px 7px 7px 0;
        }
+</style>
 
-    </style>
-    {% for book in books %}
-        <article class="media content-section">
-          <div class="media-body">
+  <article class="media content-section">
+    <div class="media-body">
             <div class="article-metadata">
               <a class="mr-2" href="#">{{ book.author.name }}</a>
             </div>
@@ -18,7 +17,6 @@
               <p><img src="{{ book.cover.url }}" alt="Lights" class="leftimg" > {{book.review}}</p>
 
               <button class="btn btn-outline-info" type="submit">{{book.cost}}</button>
-          </div>
-        </article>
-    {% endfor %}
+    </div>
+  </article>
 {% endblock content %}

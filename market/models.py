@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.safestring import mark_safe
 from PIL import Image as Im # new
 from django.contrib.auth.models import User
+from django.urls import reverse
 # Create your models here
 
 class Author(models.Model):
@@ -25,6 +26,9 @@ class Book(models.Model):
             correct_params = (300, 300)
             image.thumbnail(correct_params)
             image.save(self.cover.path)
+
+    def get_absolute_url(self):
+        return reverse('book-detail', kwargs={'pk': self.pk})
 
 
 class Order(models.Model):

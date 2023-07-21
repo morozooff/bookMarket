@@ -6,9 +6,8 @@ from rest_framework.decorators import APIView
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.request import Request
 from rest_framework.response import Response
-
 from .logic.validations import *
-
+from django.views.generic import ListView, DetailView
 
 
 def catalog(request):
@@ -17,6 +16,18 @@ def catalog(request):
         'books' : books
     }
     return render(request, 'market/catalog.html', context)
+
+class BookListView(ListView):
+    model = Book
+    template_name = 'market/catalog.html'
+    context_object_name = 'books'
+    ordering = ['-name']
+
+
+class BookDetailView(DetailView):
+    model = Book
+    # template_name = 'market/book_detail.html'
+
 
 def about(request):
     return render(request, 'market/about.html', {'title': 'О магазине TolStore'})
