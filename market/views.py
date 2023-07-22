@@ -1,12 +1,7 @@
-from django.http import HttpResponseRedirect
-from django.http import HttpResponse
-from django.shortcuts import render
+
+from django.shortcuts import render, get_object_or_404
 from .serializers import *
-from rest_framework.decorators import APIView
-from rest_framework.viewsets import ModelViewSet
-from rest_framework.request import Request
-from rest_framework.response import Response
-from .logic.validations import *
+
 from django.views.generic import ListView, DetailView
 
 
@@ -21,8 +16,20 @@ class BookListView(ListView):
     model = Book
     template_name = 'market/catalog.html'
     context_object_name = 'books'
-    ordering = ['-name']
+    ordering = ['name']
+    paginate_by = 5
 
+
+class AuthorBookListView(ListView):
+    model = Book
+    template_name = 'market/author_books.html'
+    context_object_name = 'books'
+    ordering = ['name']
+    paginate_by = 5
+
+    def get_queryset(self):
+        author = get_object_or_404(Author,name = self.kwargs.get('name'))
+        return Book.objects.filter(author = author)
 
 class BookDetailView(DetailView):
     model = Book

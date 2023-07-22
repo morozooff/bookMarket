@@ -10,7 +10,7 @@
   <article class="media content-section">
     <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="#">{{ book.author.name }}</a>
+              <a class="mr-2" href="{% url 'author-books' book.author.name %}">{{ book.author.name }}</a>.
             </div>
               <h2><a class="article-title" href="{% url 'book-detail' book.id %}">{{ book.name }}</a></h2>
             <p class="article-content">{{ book.tags }}</p>

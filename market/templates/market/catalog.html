@@ -11,7 +11,7 @@
         <article class="media content-section">
           <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="#">{{ book.author.name }}</a>
+              <a class="mr-2" href="{% url 'author-books' book.author.name %}">{{ book.author.name }}</a>
             </div>
               <h2><a class="article-title" href="{% url 'book-detail' book.id %}">{{ book.name }}</a></h2>
             <p class="article-content">{{ book.tags }}</p>
@@ -21,4 +21,28 @@
           </div>
         </article>
     {% endfor %}
+    <div class="pagination justify-content-center">
+        {% if is_paginated %}
+
+          {% if page_obj.has_previous %}
+
+            <a class="btn btn-outline-info mb-4 mr-1" href="?page=1">Первая</a>
+            <a class="btn btn-outline-info mb-4 mr-1" href="?page={{ page_obj.previous_page_number }}">Предыдущая</a>
+          {% endif %}
+
+          {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num %}
+              <a class="btn btn-info mb-4 mr-1" href="?page={{ num }}">{{ num }}</a>
+            {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+              <a class="btn btn-outline-info mb-4 mr-1" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+          {% endfor %}
+
+          {% if page_obj.has_next %}
+            <a class="btn btn-outline-info mb-4 mr-1" href="?page={{ page_obj.next_page_number }}">Следующая</a>
+            <a class="btn btn-outline-info mb-4 mr-1" href="?page={{ page_obj.paginator.num_pages }}">Последняя</a>
+          {% endif %}
+
+        {% endif %}
+      </div>
 {% endblock content %}

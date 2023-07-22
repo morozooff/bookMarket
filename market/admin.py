@@ -15,14 +15,14 @@ class BookAdmin(admin.ModelAdmin):
     list_filter = ("author", )
 
 
-class BookInline(admin.TabularInline):
-    model = Order.books.through
-
-@register(Order)
-class OrderAdmin(admin.ModelAdmin):
-    list_display = ("order_id", )
-    exclude = ["books", "users"]
-    list_filter = ("status",)
-    inlines = [
-        BookInline,
-    ]
+# class BookInline(admin.TabularInline):
+#     model = Order.books.through
+#
+# @register(Order)
+# class OrderAdmin(admin.ModelAdmin):
+#     list_display = ("order_id", )
+#     exclude = ["books", "users"]
+#     list_filter = ("status",)
+#     inlines = [
+#         BookInline,
+#     ]
