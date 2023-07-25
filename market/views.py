@@ -1,7 +1,9 @@
 
 from django.shortcuts import render, get_object_or_404
-from .serializers import *
+from django.views.generic.edit import FormMixin
 
+from .serializers import *
+from order.forms import BasketAddBookForm
 from django.views.generic import ListView, DetailView
 
 
@@ -31,10 +33,30 @@ class AuthorBookListView(ListView):
         author = get_object_or_404(Author,name = self.kwargs.get('name'))
         return Book.objects.filter(author = author)
 
-class BookDetailView(DetailView):
+class BookDetailView(FormMixin, DetailView):
     model = Book
-    # template_name = 'market/book_detail.html'
+    template_name = 'market/book_detail.html'
+    form_class = BasketAddBookForm
 
+    def get_success_url(self):
+        return reverse('book_detail', kwargs={'book_id': self.object.id})
+
+    def get_context_data(self, **kwargs):
+        context = super(BookDetailView, self).get_context_data(**kwargs)
+        context['form'] = BasketAddBookForm(initial = {'book': self.object})
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+    def form_valid(self, form):
+        form.save()
+        return super(BookDetailView, self).form_valid(form)
 
 def about(request):
     return render(request, 'market/about.html', {'title': 'О магазине TolStore'})
@@ -43,8 +65,5 @@ def about(request):
 def home(request):
     return render(request, 'market/home.html')
 
-# class BookViewSet(ModelViewSet):
-#     queryset = Book.objects.all()
-#     serializer_class = BookSerializer
 
 

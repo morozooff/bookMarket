@@ -12,9 +12,3 @@ class BookSerializer(ModelSerializer):
     class Meta:
         model = Book
         fields = ['name', 'author', 'cost', 'cover']
-
-
-class OrderSerializer(ModelSerializer):
-    class Meta:
-        model = Order
-        fields = ['order_id', 'status']

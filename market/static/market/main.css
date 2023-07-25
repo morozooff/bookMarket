@@ -117,3 +117,7 @@ footer a:hover {
   text-decoration: none;
 }
 
+table {
+  border-collapse: collapse;
+}
+

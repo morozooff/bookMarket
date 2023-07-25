@@ -1,0 +1,52 @@
+{% extends "market/base.html" %}
+{% block content %}
+    <h1>Ваша корзина</h1>
+    <article class = "media content-section">
+        <div class = "media-body">
+            <table border="1" align="center">
+            <thead>
+            <tr>
+                    <th>Обложка</th>
+                    <th>Книга</th>
+                    <th>Количество</th>
+                    <th>Цена за единицу товара</th>
+                    <th>Сумма</th>
+                    <th>Удалить</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in basket %}
+                {% with book=item.book %}
+                    <tr>
+                        <td>
+                            <a href="{% url 'book-detail' book.id %}">
+                                <img src="{{ book.cover.url }}" alt="Lights">
+                            </a>
+                        </td>
+                        <td>{{ book.name }}</td>
+                        <td>{{ item.quantity }}</td>
+                        <td>{{ item.cost }}₽</td>
+                        <td>{{ item.total_cost }}₽</td>
+                        <td><a class = "btn btn-outline-info" href="{% url 'basket_remove' book.id%}">Удалить</a></td>
+                    </tr>
+                {% endwith %}
+            {% endfor %}
+            </tbody>
+            </table>
+            <p>
+                {% if basket.get_total_price != 0%}
+                    <h3>Всего к оплате: {{basket.get_total_price}} рублей</h3>
+                    <a href="{% url 'market-catalog' %}" class = "btn btn-outline-info">Продолжить покупку</a>
+                    <a href="#" class="btn btn-outline-info">Оформить заказ</a>
+                {% else %}
+                    <h3>Ваша корзина пуста</h3>
+                    <a href="{% url 'market-catalog' %}" class = "btn btn-outline-info">Продолжить покупку</a>
+                {% endif %}
+            </p>
+        </div>
+        </article>
+{% endblock %}
+
+
+
+

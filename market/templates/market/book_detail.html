@@ -10,13 +10,20 @@
   <article class="media content-section">
     <div class="media-body">
             <div class="article-metadata">
-              <a class="mr-2" href="{% url 'author-books' book.author.name %}">{{ book.author.name }}</a>.
+              <a class="mr-2" href="{% url 'author-books' book.author.name %}">{{ book.author.name }}</a>
             </div>
               <h2><a class="article-title" href="{% url 'book-detail' book.id %}">{{ book.name }}</a></h2>
             <p class="article-content">{{ book.tags }}</p>
               <p><img src="{{ book.cover.url }}" alt="Lights" class="leftimg" > {{book.review}}</p>
 
-              <button class="btn btn-outline-info" type="submit">{{book.cost}}</button>
+              <h2>{{book.cost}}  рублей</h2>
+              <form action = "{% url 'basket_add' book.id%}" method = "post"}>
+                  {{ form }}
+                  {% csrf_token %}
+                  <input class="btn btn-outline-info" type="submit" value="Добавить в корзину">
+              </form>
+
+
     </div>
   </article>
 {% endblock content %}

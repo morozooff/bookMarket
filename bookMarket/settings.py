@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'users',
     'crispy_forms',
     'crispy_bootstrap5',
+    'order',
 
 ]
 
@@ -132,3 +133,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = 'market-home'
 LOGIN_URL = 'login'
+BASKET_SESSION_ID = 'basket'

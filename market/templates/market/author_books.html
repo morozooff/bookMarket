@@ -17,7 +17,7 @@
             <p class="article-content">{{ book.tags }}</p>
               <p><img src="{{ book.cover.url }}" alt="Lights" class="leftimg" > {{book.review}}</p>
 
-              <button class="btn btn-outline-info" type="submit">{{book.cost}}</button>
+              <a href="{% url 'book-detail' book.id %}" class = "btn btn-outline-info">{{book.cost}}  рублей</a>
           </div>
         </article>
     {% endfor %}
