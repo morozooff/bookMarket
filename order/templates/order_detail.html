@@ -1,0 +1,32 @@
+{% extends "market/base.html" %}
+{% block content %}
+<style>
+  .leftimg {
+        float:left;
+        margin: 7px 7px 7px 0;
+       }
+</style>
+
+  <article class="media content-section">
+    <div class="media-body">
+            <div class="article-metadata">
+                <h2>Заказ №{{ order.id }}</h2>
+            </div>
+                <div class="article-metadata">
+                <a>Куда отправлено: {{order.address}}</a>
+                <p>Дата оформления: {{order.created}}</p>
+                <h2>{{order.get_total_cost}} рублей</h2>
+                <a>Статус: {{order.status_verbose}}</a>
+                </div>
+            <h2>Детали заказа</h2>
+            {% for item in order.items.all%}
+                <article class="media content-section">
+                <div class="article-metadata">
+                    <strong><a class="article-title" href="{% url 'book-detail' item.id %}">{{ item.book.name }}</a></strong>
+                    <p><img src="{{ item.book.cover.url }}" alt="Lights" class="leftimg" >Количество: {{item.quantity}}</p>
+                </div>
+                </article>
+            {%endfor%}
+    </div>
+  </article>
+{% endblock content %}

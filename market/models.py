@@ -1,9 +1,6 @@
 from django.db import models
-from django.utils.safestring import mark_safe
 from PIL import Image as Im # new
-from django.contrib.auth.models import User
 from django.urls import reverse
-# Create your models here
 
 class Author(models.Model):
     name = models.CharField(max_length=255)
@@ -29,18 +26,3 @@ class Book(models.Model):
 
     def get_absolute_url(self):
         return reverse('book-detail', kwargs={'pk': self.pk})
-
-
-# class Order(models.Model):
-#     order_id = models.CharField(max_length=255, primary_key=True)
-#     books = models.ManyToManyField(Book)
-#     ORDER_STATUS = [
-#         ('S', 'Started'),
-#         ('NP', 'Not paid'),
-#         ('C', 'Construct'),
-#         ('ID', 'In Delivery'),
-#         ('D', 'Delivered'),
-#         ('ND', 'Not Delivered')
-#     ]
-#     status = models.CharField(max_length=2, choices=ORDER_STATUS, default = 'S')
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)

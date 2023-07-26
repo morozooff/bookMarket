@@ -1,0 +1,24 @@
+{% extends "market/base.html" %}
+{% block title %}Офорить заказ{% endblock %}
+{% block content %}
+    <h1>Оформить заказ</h1>
+    <div class="media content-section">
+        <div class="media-body">
+            <h3>Ваш заказ, {{ request.user.username }}</h3>
+            <ul>
+                {% for item in basket%}
+                    <li>
+                        {{ item.quantity }}x {{ item.book.name }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <p>Всего: {{ basket.get_total_price }} рублей</p>
+        </div>
+    </div>
+
+    <form action="created" method="post" class="media-body">
+        {{ form.as_p }}
+        <p><input type="submit" value="Сделать заказ"></p>
+        {% csrf_token %}
+    </form>
+{% endblock %}

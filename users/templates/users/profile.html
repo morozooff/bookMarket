@@ -6,6 +6,8 @@
         <div class="media-body">
           <h2 class="account-heading">{{ user.username }}</h2>
           <p class="text-secondary">{{ user.email }}</p>
+            <legend class="border-bottom mb-4">Ваши заказы</legend>
+            <a href = '{% url  "my_orders" request.user.id %}' class = 'btn btn-outline-info'> Перейти к списку моих заказов</a>
         </div>
       </div>
       <form method="POST" enctype="multipart/form-data">

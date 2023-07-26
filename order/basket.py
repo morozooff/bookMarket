@@ -46,8 +46,13 @@ class Basket(object):
     def remove(self, book):
         book_id = str(book.id)
 
+
         if book_id in self.basket:
             self.basket[book_id]['quantity'] -= 1
+            self.save()
+
+        if self.basket[book_id]['quantity'] < 1:
+            del self.basket[book_id]
             self.save()
 
 
