@@ -1,10 +1,12 @@
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.edit import FormMixin
 
 from .serializers import *
+from .forms import SearchBookForm
 from order.forms import BasketAddBookForm
 from django.views.generic import ListView, DetailView
+from django.db.models import Q
 
 
 def catalog(request):
@@ -64,6 +66,33 @@ def about(request):
 
 def home(request):
     return render(request, 'market/home.html')
+
+def book_search(request):
+    if request.method == 'POST':
+        form = SearchBookForm(request.POST)
+        if form.is_valid():
+            query = form.cleaned_data.get('search_request')
+            return redirect('search-results', query)
+    else:
+        form = SearchBookForm()
+    return render(request, 'market/search.html', {'form': form})
+
+class SearchResultListView(ListView):
+    model = Book
+    template_name = 'market/search_results.html'
+    context_object_name = 'books'
+    ordering = ['name']
+
+    def get_queryset(self):
+        query = self.kwargs.get('query')
+
+        authors_query = Author.objects.filter(Q(name__icontains = query))
+        author_books_qs = Book.objects.filter(Q(author__id__in = list(authors_query)))
+
+        qs = Book.objects.filter(Q(name__icontains=query)|Q(tags__icontains = query))
+
+        qs =  set( qs | author_books_qs )
+        return qs
 
 
 

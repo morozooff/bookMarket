@@ -1,0 +1,14 @@
+{% extends "market/base.html" %}
+{% block content %}
+  <article class="media content-section">
+    <div class="media-body">
+              <h1>Поиск</h1>
+              <form method = "POST"}>
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  {% csrf_token %}
+                  <button class="btn btn-outline-info" type="submit">Найти</button>
+              </form>
+    </div>
+  </article>
+{% endblock content %}

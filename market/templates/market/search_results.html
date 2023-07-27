@@ -1,0 +1,30 @@
+{% extends "market/base.html" %}
+{% block content %}
+    <style>
+       .leftimg {
+        float:left;
+        margin: 7px 7px 7px 0;
+       }
+    </style>
+    {% for book in books %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="{% url 'author-books' book.author.name %}">{{ book.author.name }}</a>
+            </div>
+              <h2><a class="article-title" href="{% url 'book-detail' book.id %}">{{ book.name }}</a></h2>
+            <p class="article-content">{{ book.tags }}</p>
+              <p><img src="{{ book.cover.url }}" alt="Lights" class="leftimg" > {{book.review}}</p>
+            <a href="{% url 'book-detail' book.id %}" class = "btn btn-outline-info">{{book.cost}}  рублей</a>
+          </div>
+        </article>
+    {% empty %}
+        <article class="media content-section">
+            <div class="media-body">
+                <h1> По вашему запросу ничего не найдено</h1>
+            </div>
+        </article>
+    {% endfor %}
+    <div class="pagination justify-content-center">
+      </div>
+{% endblock content %}
