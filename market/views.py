@@ -87,7 +87,11 @@ class SearchResultListView(ListView):
         query = self.kwargs.get('query')
 
         authors_query = Author.objects.filter(Q(name__icontains = query))
-        author_books_qs = Book.objects.filter(Q(author__id__in = list(authors_query)))
+        ids = []
+        authors_data =  authors_query.values('id')
+        for author in authors_data:
+            ids.append(author['id'])
+        author_books_qs = Book.objects.filter(Q(author__id__in = ids ))
 
         qs = Book.objects.filter(Q(name__icontains=query)|Q(tags__icontains = query))
 

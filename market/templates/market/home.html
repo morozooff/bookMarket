@@ -1,6 +1,10 @@
 {% extends "market/base.html" %}
 {% block content %}
-    <h1> Добро пожаловать! </h1>
-    <a href="{% url 'market-catalog' %}" class = "btn btn-outline-info">Каталог</a>
-
+<h1> Добро пожаловать! </h1>
+<article class="media content-section">
+    <div class = "media-body">
+        <img src="https://img.freepik.com/free-vector/gradient-sale-background-design_23-2149069435.jpg">
+        <a href="{% url 'market-catalog' %}" class = "btn btn-outline-info">Каталог</a>
+    </div>
+</article>
 {% endblock content %}

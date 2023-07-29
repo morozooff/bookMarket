@@ -18,7 +18,7 @@
 
     <form action="created" method="post" class="media-body">
         {{ form.as_p }}
-        <p><input type="submit" value="Сделать заказ"></p>
+        <p><input type="submit" class="btn btn-outline-info" value="Сделать заказ"></p>
         {% csrf_token %}
     </form>
 {% endblock %}
