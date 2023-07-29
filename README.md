@@ -96,6 +96,9 @@ python manage.py runserver
     </div>
 <h2>Functional</h2>
 <h3>Market pages</h3>
+  <div>
+    Home its a basic page, where announcements about discounts, promotions, sales are published:
+  </div>
 <h3>Book catalog</h3>
 <h3>Registration/Autorization</h3>
 <h3>Market basket</h3>
