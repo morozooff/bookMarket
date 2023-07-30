@@ -6,41 +6,28 @@ from market.models import Book
 class Basket(object):
 
     def __init__(self, request):
-        # получаем с запроса данные о текущей сесии
         self.session = request.session
-        # по тегу из настроек пытаемся получить из сессии корзину
         basket = self.session.get(settings.BASKET_SESSION_ID)
 
-        # если корзину не получилось получить, то создаем ее с тэгом 'basket'
         if not basket:
             basket = self.session[settings.BASKET_SESSION_ID] = {}
-        # полученную или созданную корзину возвращаем самому объекту
         self.basket = basket
 
-    # функция для добавления в корзину или обновления колличества
+
     def add(self, book, quantity = 1, update_quantity = False ):
-        # при передаче объекта книги в корзину, берем id этой книги
         book_id = str(book.id)
-        # если такая id еще не содержится в словаре корзине
+
         if book_id not in self.basket:
-            # то мы создаем новый элемент словаря с ключом 'book_id' и с нулевым параметром колличества и со стоимостью книги
             self.basket[book_id] = {'quantity' : 0, 'cost': str(book.cost)}
 
-        # если нужно обновить колличество
         if update_quantity:
-            # то в поле колличество записываем новое значение
             self.basket[book_id]['quantity'] = quantity
         else:
-            # иначе обновляем значение колличество на плюс один
             self.basket[book_id]['quantity'] += quantity
-        # сохраняем состояние объекта
         self.save()
 
     def save(self):
-        # Обновление сесси basket
         self.session[settings.BASKET_SESSION_ID] = self.basket
-
-        # Отметить сеанс как измененный, чтобы убедиться, что он сохранен
 
 
     def remove(self, book):

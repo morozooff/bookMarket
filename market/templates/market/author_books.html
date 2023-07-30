@@ -5,8 +5,28 @@
             float:left;
             margin: 7px 7px 7px 0;
            }
+      .author_info {
+            position: fixed;
+            max-width: 350px;
+            right: 10px;
+            top: 10%;
+            padding: 20px;
+            background: #ffffff ;
+            border: 1px solid #333;
+           }
     </style>
-    <h1 class="mb-3">Книги автора {{ view.kwargs.name }} ({{ page_obj.paginator.count }})</h1>
+
+    <article class = "author_info">
+        <h5>{{ author_name }}</h5>
+        <div class="article-content">
+            <div class ="media-body">
+                <img src="{{author_avatar}}">
+                <p>{{ author_biography }}</p>
+            </div>
+        </div>
+    </article>
+
+    <h1 class="mb-3">Книги автора (найдено {{ page_obj.paginator.count }} книг)</h1>
     {% for book in books %}
         <article class="media content-section">
           <div class="media-body">
@@ -21,6 +41,7 @@
           </div>
         </article>
     {% endfor %}
+
     <div class="pagination justify-content-center">
     {% if is_paginated %}
 

@@ -17,7 +17,7 @@
               <p><img src="{{ book.cover.url }}" alt="Lights" class="leftimg" > {{book.review}}</p>
 
               <h2>{{book.cost}}  рублей</h2>
-              <form action = "{% url 'basket_add' book.id%}" method = "post"}>
+              <form action = "{% url 'basket-add' book.id%}" method = "post"}>
                   {{ form }}
                   {% csrf_token %}
                   <input class="btn btn-outline-info" type="submit" value="Добавить в корзину">

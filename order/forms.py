@@ -2,8 +2,7 @@ from django import forms
 
 from .models import Order
 
-BOOK_QUANTITY_CHOICE = [(i, str(i)) for i in range(1, 16)]
-
+BOOK_QUANTITY_CHOICE = [(i, str(i)) for i in range(1, 20)]
 
 class BasketAddBookForm(forms.Form):
     quantity = forms.TypedChoiceField(choices = BOOK_QUANTITY_CHOICE, coerce=int, label = "Количество")

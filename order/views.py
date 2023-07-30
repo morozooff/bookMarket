@@ -20,14 +20,14 @@ def basket_add(request, book_id):
         cd = form.cleaned_data
         basket.add(book = book, quantity = cd['quantity'], update_quantity = cd['update'])
 
-    return redirect('basket_detail')
+    return redirect('basket-detail')
 
 
 def basket_remove(request, book_id):
     basket = Basket(request)
     book = get_object_or_404(Book, id = book_id)
     basket.remove(book)
-    return redirect('basket_detail')
+    return redirect('basket-detail')
 
 
 @login_required

@@ -4,7 +4,7 @@
     {% for order in orders %}
         <article class="media content-section">
           <div class="media-body">
-              <h2><a class="article-title" href="{% url 'order_detail' order.id %}">Заказ №{{ order.id }}</a></h2>
+              <h2><a class="article-title" href="{% url 'order-detail' order.id %}">Заказ №{{ order.id }}</a></h2>
               <a>Куда отправлено: {{order.address}}</a>
               <p>Дата оформления: {{order.created}}</p>
               <h2>{{order.get_total_cost}} рублей</h2>

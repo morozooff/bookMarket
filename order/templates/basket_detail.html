@@ -27,7 +27,7 @@
                         <td>{{ item.quantity }}</td>
                         <td>{{ item.cost }}₽</td>
                         <td>{{ item.total_cost }}₽</td>
-                        <td><a class = "btn btn-outline-info" href="{% url 'basket_remove' book.id%}">Удалить</a></td>
+                        <td><a class = "btn btn-outline-info" href="{% url 'basket-remove' book.id%}">Удалить</a></td>
                     </tr>
                 {% endwith %}
             {% endfor %}
@@ -37,7 +37,7 @@
                 {% if basket.get_total_price != 0%}
                     <h3>Всего к оплате: {{basket.get_total_price}} рублей</h3>
                     <a href="{% url 'market-catalog' %}" class = "btn btn-outline-info">Продолжить покупку</a>
-                    <a href="{% url 'order_create' %}" class="btn btn-outline-info">Оформить заказ</a>
+                    <a href="{% url 'order-create' %}" class="btn btn-outline-info">Оформить заказ</a>
                 {% else %}
                     <h3>Ваша корзина пуста</h3>
                     <a href="{% url 'market-catalog' %}" class = "btn btn-outline-info">Продолжить покупку</a>
