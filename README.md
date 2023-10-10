@@ -123,8 +123,6 @@ python manage.py runserver
   you can create order with next params:
   <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/order_create_page.png">
   
-  <img src="">
-  <img src="">
 <h3>Profile page</h3>
   this is profile page, there you can change info about your profile
   <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/profile_page.png">
