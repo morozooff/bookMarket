@@ -99,9 +99,45 @@ python manage.py runserver
   <div>
     Home its a basic page, where announcements about discounts, promotions, sales are published:
   </div>
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/home_page.png">
+  And about page
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/about_page.png">
 <h3>Book catalog</h3>
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/catalog_page.png">
+
+  if you need more information about specific book just click on it in catalog:
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/book_detail_page.png">
+  
+  if you need books of specific author just click on his name:
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/author_books_page.png">
 <h3>Registration/Autorization</h3>
+  register page:
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/reg_page.png">
+  
+  login page:
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/login_page.png">
 <h3>Market basket</h3>
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/basket_page.png">
+  
 <h3>Market order</h3>
+  you can create order with next params:
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/order_create_page.png">
+  
+  <img src="">
+  <img src="">
 <h3>Profile page</h3>
+  this is profile page, there you can change info about your profile
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/profile_page.png">
+  
+  in your profile you can click on "my orders" to find more informations about your orders:
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/my_orders_page.png">
+
+  if you click on any order you can find more information about specific order:
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/order_details.png">
 <h3>Search engine</h3>
+Example1
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/search.png">
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/search_results_2.png">
+Example2
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/search2.png">
+  <img src="https://github.com/morozooff/bookMarket/blob/main/screenshots/search_results_2.png">
